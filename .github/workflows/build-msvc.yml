@@ -168,7 +168,7 @@ jobs:
             --cache-file=config.cache
             --prefix ${{ matrix.cc != 'gcc' && format('"{0}/_opam"', matrix.prefix) || format('"$(cygpath "{0}")"', matrix.prefix) }}
             --docdir ${{ format((matrix.cc != 'gcc' && '"{0}/_opam/doc/ocaml"' || '"$(cygpath "{0}/doc/ocaml")"'), matrix.prefix) }}
-            ${{ matrix.cc != 'gcc' && format('--host={0}-pc-windows', matrix.arch) || '' }}
+            ${{ matrix.cc != 'gcc' && format('--host={0}-pc-windows', matrix.arch == 'arm64' && 'aarch64' || matrix.arch) || '' }}
             ${{ matrix.cc != 'gcc' && format('CC={0}', matrix.cc) || '' }}
             --enable-ocamltest
             ${{ endsWith(matrix.arch, '64') && '--enable-native-toplevel' || '--disable-native-toplevel' }}
