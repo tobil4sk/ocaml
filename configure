@@ -3997,7 +3997,7 @@ esac
      ;; #(
   *-*-mingw*) :
     as_fn_error $? "unknown mingw-w64 variant" "$LINENO" 5 ;; #(
-  i686-pc-windows|x86_64-pc-windows) :
+  i686-pc-windows|x86_64-pc-windows|aarch64-pc-windows) :
      ;; #(
   *-pc-windows*) :
     as_fn_error $? "unknown MSVC variant" "$LINENO" 5 ;; #(
@@ -4015,7 +4015,7 @@ esac
      ;; #(
   *-*-mingw*) :
     as_fn_error $? "unknown mingw-w64 variant" "$LINENO" 5 ;; #(
-  i686-pc-windows|x86_64-pc-windows) :
+  i686-pc-windows|x86_64-pc-windows|aarch64-pc-windows) :
      ;; #(
   *-pc-windows*) :
     as_fn_error $? "unknown MSVC variant" "$LINENO" 5 ;; #(
@@ -16351,7 +16351,7 @@ case $target in #(
     flexdll_chain='msvc'
     flexdll_cc_var='MSVCC'
     flexlink_flags='-merge-manifest -stack 16777216' ;; #(
-  x86_64-pc-windows) :
+  x86_64-pc-windows|aarch64-pc-windows) :
     flexdll_chain='msvc64'
     flexdll_cc_var='MSVCC64'
     flexlink_flags='-merge-manifest -stack 33554432' ;; #(

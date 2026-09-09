@@ -1234,7 +1234,7 @@ AS_CASE([$target],
     [flexdll_chain='msvc'
     flexdll_cc_var='MSVCC'
     flexlink_flags='-merge-manifest -stack 16777216'],
-  [x86_64-pc-windows],
+  [x86_64-pc-windows|aarch64-pc-windows],
     [flexdll_chain='msvc64'
     flexdll_cc_var='MSVCC64'
     flexlink_flags='-merge-manifest -stack 33554432'],

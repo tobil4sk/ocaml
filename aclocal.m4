@@ -647,7 +647,7 @@ AC_DEFUN([OCAML_CHECK_WINDOWS_TRIPLET], [
     [i686-w64-mingw32*|x86_64-w64-mingw32*],[],
     [*-*-mingw*],
       [AC_MSG_ERROR([unknown mingw-w64 variant])],
-    [i686-pc-windows|x86_64-pc-windows],[],
+    [i686-pc-windows|x86_64-pc-windows|aarch64-pc-windows],[],
     [*-pc-windows*],
       [AC_MSG_ERROR([unknown MSVC variant])])
 ])
