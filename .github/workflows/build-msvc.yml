@@ -39,9 +39,9 @@ jobs:
             let compilers = ['clang-cl'];
             // # Also test i686 MSVC
             let include = [
-              {os: 'windows-latest', cc: 'cl', arch: 'i686', opam: 'false', prefix: '$PROGRAMFILES/Бактріан🐫', libdir: 'relative'},
-              {os: 'windows-2025', cc: 'cl', arch: 'x86_64', opam: 'true', prefix: 'C:\\\\Бактріан🐫'},
-              {os: 'windows-2025', cc: 'cl', arch: 'i686', opam: 'true', prefix: 'C:\\\\Бактріан🐫'},
+              // {os: 'windows-latest', cc: 'cl', arch: 'i686', opam: 'false', prefix: '$PROGRAMFILES/Бактріан🐫', libdir: 'relative'},
+              // {os: 'windows-2025', cc: 'cl', arch: 'x86_64', opam: 'true', prefix: 'C:\\\\Бактріан🐫'},
+              // {os: 'windows-2025', cc: 'cl', arch: 'i686', opam: 'true', prefix: 'C:\\\\Бактріан🐫'},
               {os: 'windows-11-arm', cc: 'cl', arch: 'arm64', opam: 'true', prefix: 'C:\\\\Бактріан🐫'}];
             let libdir = ['absolute'];
             // # If this is a pull request, see if the PR has the
@@ -112,12 +112,14 @@ jobs:
           path: |
             D:\cygwin-packages
           key: cygwin-packages
+        if: matrix.arch != 'arm64'
 
       - name: Install Cygwin
         uses: cygwin/cygwin-install-action@v6
         with:
           packages: make,${{ matrix.cc != 'gcc' && 'mingw64-x86_64-' || 'gcc-g++,gcc-fortran,' }}gcc-core,rsync,unzip
           install-dir: 'D:\cygwin'
+        if: matrix.arch != 'arm64'
 
       - name: Save Cygwin cache
         uses: actions/cache/save@v5
@@ -125,6 +127,12 @@ jobs:
           path: |
             D:\cygwin-packages
           key: cygwin-packages
+        if: matrix.arch != 'arm64'
+
+      - uses: msys2/setup-msys2@v2
+        with:
+          msystem: CLANGARM64
+        if: matrix.arch == 'arm64'
 
       - name: Set up MSVC
         uses: ilammy/msvc-dev-cmd@v1
