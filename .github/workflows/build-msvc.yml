@@ -144,7 +144,8 @@ jobs:
         if: matrix.opam == 'true'
         shell: pwsh
         run: |
-          winget install opam --accept-source-agreements
+          Invoke-Expression "& { $(Invoke-RestMethod https://opam.ocaml.org/install.ps1) }"
+          #winget install opam --accept-source-agreements
           Add-Content -Path $env:GITHUB_PATH -Value "$env:LOCALAPPDATA\Microsoft\WinGet\Links"
 
       - name: Compute a key to cache configure results
