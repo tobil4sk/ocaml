@@ -204,6 +204,8 @@ jobs:
           if ((failed)) ; then make -j1 V=1 ; exit $failed ; fi
           test -e runtime/libcamlrun.lib || tools/check-symbol-names runtime/*.a otherlibs/*/lib*.a
           runtime/ocamlrun ocamlc -config
+        env:
+          MSYS2_ARG_CONV_EXCL: '*'
 
       - name: Assemble backend with mingw-w64 GASM and compare
         run: |
